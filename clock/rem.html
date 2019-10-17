@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function init(){
+        var width=
+        document.documentElement.clientWidth;//获取客户端页面的宽度
+        document.documentElement.style.fontSize=width/10+'px';
+        }
+        init();
+        window.onresize=function(){ //onresize事件
+            init();
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 37.5px;
+        } 
+        .box{
+            width: 10rem;
+            height: 20px;
+            background-color:green;
+        }
+        .col-5{
+            width: 5rem;
+        }
+        .col-8{
+            width: 8rem;
+        }
+        .col-2{
+            width: 2rem;
+        }
+        .col-4{
+            width: 4rem;
+        }
+        .col-3{
+            width: 3rem;
+        }
+        .row{
+            display: flex;
+            margin: 5px 0px;
+        }
+        .row .box:nth-child(even){
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="row">
+        <div class="box col-5"></div>
+        <div class="box col-5"></div>
+    </div>
+    <div class="row">
+        <div class="box col-4"></div>
+        <div class="box col-3"></div>
+        <div class="box col-3"></div>
+    </div>
+    <div class="row">
+        <div class="box col-8"></div>
+        <div class="box col-2"></div>
+    </div>
+</body>
+</html>
