@@ -17,10 +17,14 @@
     <div id="grassLand2"></div>
   </div>
   <script src="js/bird.js"></script>
+  <script src="./js/baseObj.js"></script>
+  <script src="./js/block.js"></script>
   <script>
     var jsWrapBg = document.querySelector('.wrapBg')
-    var jsHeadTltle = document.querySelector('.headTitle')
-    var jsHeadeBird = document.getElementById('headBird')
+    var jsHeadTitle = document.querySelector('.headTitle')
+    var jsHeadBird = document.getElementById('headBird')
+    var blocksArr = []
+    var blockDistance = baseObj.randomNum(120,350)
     var Y = 3
     var index = 0
     var imgArr = ["img/bird0.png","img/bird1.png"]
@@ -28,8 +32,8 @@
 
       function headWave(){
       Y *= -1
-      jsHeadTltle.style.top = jsHeadTltle.offsetTop + Y +"px"
-      jsHeadeBird.src = imgArr[index++];
+      jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y +"px"
+      jsHeadBird.src = imgArr[index++];
       if(index === 2){
         index = 0;
       }
@@ -48,20 +52,51 @@
       }
       jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 +"px"
       jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 +"px"
+
+      if (blocksArr.length) {
+        for (var i = 0; i< blocksArr.length; i++){
+          blocksArr[i].moveBlock()
+          var x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap,bird.div)
+          var y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap,bird.div)
+          var z = bird.div.offsetTop >= 390
+          if (x || y || z){
+            bird.fallSpeed = 0
+            clearInterval(landTimer)
+            jsWrapBg.onclick = null
+          }
+        }
+        if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (450 -blockDistance)){
+          blockDistance = baseObj.randomNum(130,250)
+          var newBlock = new Block()
+          newBlock.createBlock()
+          blocksArr.push(newBlock)
+        }
+        if(blocksArr[0].downDivWrap.offsetLeft < -50){
+          jsWrapBg.removeChild(blocksArr[0].downDivWrap)
+          jsWrapBg.removeChild(blocksArr[0].upDivWrap)
+          blocksArr.shift(blocksArr[0])
+        }
+      }
     }
 
     var jsStartBtn = document.getElementById('startBtn')
     jsStartBtn.onclick = function() {
-      jsHeadTltle.style.display = "none"
+      jsHeadTitle.style.display = "none"
       clearInterval(headWaveTimer)
       jsStartBtn.style.display = "none"
       //出现小鸟
       bird.showBird(jsWrapBg)
       bird.flyBird()
+      //煽动翅膀
       bird.wingWave()
+
+      var b = new Block()
+      b.createBlock()
+      blocksArr.push(b)
+
+      }
       jsWrapBg.onclick = function() {
         bird.fallSpeed = -8
-      }
     }
   </script>
 </body>
