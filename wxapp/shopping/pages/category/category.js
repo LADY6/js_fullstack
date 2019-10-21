@@ -13,6 +13,7 @@ Page({
       { name: '粗茶', id: 'cucha' },
       { name: '淡饭', id: 'danfan' }
     ],
+    //设置默认样式
     curIndex:0,
     toView: "guowei",
     detail: [
