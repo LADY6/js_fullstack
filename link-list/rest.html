@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ...是扩展运算符 rest参数，发生在函数上
+    function foo(...args) {
+      console.log(args)
+      return Math.max(...args)
+    }  
+    foo(1,2,3,4,5)
+
+    var obj = {
+      a: 1,
+      b: 2
+    }
+    //浅复制
+    function copy(obj) {
+      let newObj = {}
+      for(let key in obj) {
+        newObj[key] = obj[key]
+      }
+      return newObj
+    }
+    var obj1 = copy(obj)
+    obj1.c = 3
+    // console.log(obj1)
+    // console.log(obj)
+
+    var obj2 = {
+      ...obj
+    }
+    obj2.c = 4
+    console.log(obj2)
+    console.log(obj)
+
+  </script>
+</body>
+</html>

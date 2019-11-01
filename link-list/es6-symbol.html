@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //Symbol 解决变量重复的问题
+  let a = Symbol()
+  let b = Symbol()
+  console.log(a === b)
+
+
+  var obj = {
+    name: 'name',
+    age: 18,
+    [a]: 'symbol'
+  }
+  //对象key支持字符串和Symbol，但是Symbol是不可枚举的
+  for (let key in obj) {
+    console.log(key)
+  }
+  // for (let key in obj) {
+  //   console.log(obj[key])
+  // }
+  console.log(Object.getOwnPropertySymbols(obj))
+
+
+  // const sj ='triangle'
+  const sj = Symbol('triangle')
+  function getArea (shapeName) {
+    switch (shapeName) {
+      case sj:
+        return 0.5 * 10 *5
+      case 'rectangal':
+        return 10 * 5
+    }
+  }
+  console.log(getArea(sj));
+  getArea('rectangal');
+  //Symbol可消除魔法字符串
+  </script>
+</body>
+</html>
