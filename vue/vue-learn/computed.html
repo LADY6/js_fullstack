@@ -14,8 +14,15 @@
     <div class="count">{{num}}</div>
     <div class="wrap">
       <ul>
+<<<<<<< HEAD
         <!-- <li v-for="item in newsList">{{item.title}}--{{item.date}}</li> -->
         <li v-for="list in reverseNews">{{list.title}}--{{list.date}}</li>
+=======
+        <li v-for="item in newsList" class="item">{{item.title}}--{{item.date}}</li>
+      </ul>
+      <ul>
+          <li v-for="list in reverseNews">{{list.title}}--{{list.date}}</li>
+>>>>>>> c872b213194625d5deb975e918df7f86b5a58621
       </ul>
     </div>
   </div>
