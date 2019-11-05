@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //过程抽象
+    //无参化
+    function add (a, b, c) {
+      console.log(a, b, c);
+    }
+    add(1, 2, 3);
+
+    let arr = [1, 2, 3];
+    arr.forEach(add);
+    arr.forEach((item, i, arr) => {
+      add(item, i, arr)
+    })
+ 
+    arr.forEach((item, i, arr) => {
+      console.log(item, i, arr);
+    })
+
+    // (item, i, arr)
+    console.log([1, 2, 3].map(parseInt));
+    parseInt('123px', 10);//123  后面10代表进制
+    parseInt(1, 0, [1, 2, 3]) //0进制会转化为10进制
+    parseInt(2, 1, [1, 2, 3]) //没有1进制
+    parseInt(3, 2, [1, 2, 3]) //2进制没有3  01010
+    //parseInt是将 XX 进制 转换为 10进制
+  </script>
+</body>
+</html>
