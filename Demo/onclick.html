@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <form>
+      <input type="text" id="txt1"/><br/>
+      <input type="text" id="txt2"/><br/>
+      <input type="text" id="txt3"/><br/>
+      <input type="button" value="清空第1个" onclick="f1()"/><br/>
+      <input type="button" value="清空所有" onclick="f2()"/><br/>
+    </form> 
+    <script> 
+    function f1 () {
+        document.getElementById('txt1').value = ""
+      }
+      function f2 () {
+        document.querySelectorAll('input').value= ""
+      }
+  </script>
+</body>
+</html>

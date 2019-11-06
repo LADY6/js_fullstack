@@ -7,6 +7,11 @@
   <title>Document</title>
 </head>
 <body>
-  你好
+  <script>
+    document.writeln("页面还有五秒跳转");
+    setTimeout(function location () {
+      window.location.href = "main.html";
+    }, 5000);  
+  </script>
 </body>
 </html>

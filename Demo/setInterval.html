@@ -7,6 +7,15 @@
   <title>Document</title>
 </head>
 <body>
-  你好
+  <script>
+    var i = 0;
+    var a = window.setInterval(function output () {
+      document.writeln("你好<br>");
+      i++;
+      if (i == 5) {
+        clearInterval(a);
+      }
+    }, 2000)
+  </script>
 </body>
 </html>

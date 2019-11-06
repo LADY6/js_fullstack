@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <img src="./1.jpg" alt="" id="img1" width="200" height="200" onmouseover="f1()" onmouseout="f2()">
+  <img src="./1.jpg" alt="" id="img2" onmouseover="f3()" onmouseout="f4()">
+  <script>
+    function f1 () {
+      document.getElementById('img1').width= 50
+      document.getElementById('img1').height= 50
+    }
+    function f2 () {
+      document.getElementById('img1').width= 200
+      document.getElementById('img1').height= 200
+    }
+    function f3 () {
+      document.getElementById('img2').src="./2.jpg"
+    }
+    function f3 () {
+      document.getElementById('img2').src="./1.jpg"
+    }
+  </script>
+</body>
+</html>
