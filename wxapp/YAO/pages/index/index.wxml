@@ -1,13 +1,21 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="mian">
+  <view class="header">
+    <image class ="img" src="{{imgUrl}}" width="100%" />
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="center">
+    <view class="service">
+    <text class="sp">商品严选</text>
+    <text class="dp">店铺审核</text>
+    <text class="jp">假一赔三</text>
+    <text class="th">7天退换货</text>
+  </view>
+  </view>
+  <view class="body">
+    <view class="goods-info">
+      <image class="picture" src="" />
+      <text class="detail">Levis李维斯牛仔外套女秋冬休闲短款修生夹克70240-0085</text>
+      <text class="price">￥500</text>
+    </view>
   </view>
 </view>
