@@ -4,9 +4,9 @@
       <div class="menu-wrapper" ref="menuWrapper">
         <ul>
           <li
-          class="menu-item"
           v-for="(item, index) in goods"
           :key="index"
+          class="menu-item"
           @click="selectMenu(index)"
           :class="{'current' : currentIndex === index}"
           >
@@ -19,7 +19,8 @@
       </div>
       <div class="foods-wrapper" ref="foodsWrapper">
         <ul>
-          <li class="food-list"
+          <li
+          class="food-list"
           v-for="(item, index) in goods"
           :key="index"
           ref="foodList"
@@ -29,7 +30,8 @@
               <li
               class="food-item border-1px"
               v-for="(food, index) in item.foods"
-              :key="index">
+              :key="index"
+              >
                 <div class="icon">
                   <img :src="food.icon" alt="">
                 </div>
@@ -41,8 +43,12 @@
                     <span>好评率{{food.rating}}%</span>
                   </div>
                   <div class="price">
-                    <span class="now">￥{{food.price}}</span>
-                    <span class="old">￥{{food.oldPrice}}</span>
+                    <span class="now">¥{{food.price}}</span>
+                    <span class="old" v-if="food.oldPrice">¥{{food.oldPrice}}</span>
+                  </div>
+                  <div class="cartcontrol-wrapper">
+                    <!-- + -->
+                    <cartcontrol :food="food" @add="addFood"></cartcontrol>
                   </div>
                 </div>
               </li>
@@ -52,29 +58,39 @@
       </div>
     </div>
     <!-- 购物车 -->
-    <shopcart></shopcart>
+    <shopcart
+      :selectFoods = "selectFoods"
+      :deliveryPrice = "seller.deliveryPrice"
+      :minPrice = "seller.minPrice"
+    ></shopcart>
   </div>
 </template>
 
 <script>
-import shopcart from '@/components/shopcart/shopcart.vue'
 import BScroll from 'better-scroll'
+import shopcart from '@/components/shopcart/shopcart'
+import cartcontrol from '@/components/cartcontrol/cartcontrol'
 export default {
-  // name: 'Goods',
+  name: 'Goods',
+  props: {
+    seller: {
+      type: Object
+    }
+  },
   data () {
     return {
-      goods: [1, 2, 3],
+      goods: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
-      // currentIndex: 0,
       listHeight: [],
       scrollY: 0
     }
   },
   components: {
-    shopcart
+    shopcart,
+    cartcontrol
   },
   created () {
-    this.$http.get('http://localhost:8080/static/data/goods.json')
+    this.$http.get('http://localhost:8080/static/goods.json')
       .then((res) => {
         console.log(res)
         if (res.data.errno === 0) {
@@ -95,6 +111,20 @@ export default {
           return i
         }
       }
+      return 0
+    },
+    selectFoods () {
+      let foods = []
+      for (let good of this.goods) {
+        if (good.foods) {
+          for (let food of good.foods) {
+            if (food.count) {
+              foods.push(food)
+            }
+          }
+        }
+      }
+      return foods
     }
   },
   methods: {
@@ -107,7 +137,7 @@ export default {
         probeType: 3
       })
       this.foodsScroll.on('scroll', pos => {
-        console.log(pos)
+        // console.log(pos)
         this.scrollY = Math.abs(Math.round(pos.y))
       })
     },
@@ -115,7 +145,6 @@ export default {
       console.log(idx)
       // this.currentIndex = idx
       let foodList = this.$refs.foodList
-      // console.log(foodList)
       let el = foodList[idx]
       this.foodsScroll.scrollToElement(el, 300)
     },
@@ -128,14 +157,16 @@ export default {
         height += item.clientHeight
         this.listHeight.push(height)
       }
-      console.log(this.listHeight)
+    },
+    addFood () {
+
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import '../../common/stylus/mixin.styl';
+@import '../../common/stylus/mixin.styl'
 .goods
   display flex
   position absolute
@@ -155,7 +186,7 @@ export default {
       line-height 14px
       &.current
         position relative
-        z-index 9
+        z-index 10
         margin-top -1px
         background #fff
         font-weight 700
@@ -187,7 +218,7 @@ export default {
         font-size 12px
   .foods-wrapper
     flex 1
-    overflow scroll
+    // overflow scroll
     .title
       padding-left 14px
       height 26px
