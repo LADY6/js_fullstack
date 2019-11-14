@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-    <!-- {{abc}} -->
     <div class="content-wrapper">
       <div class="avatar">
         <img :src="seller.avatar" alt="" width="64" height="64">
@@ -35,6 +34,7 @@
           <div class="detail-main">
             <h1 class="name">{{seller.name}}</h1>
             <div class="star-wrapper">
+              <!-- 星星 -->
             </div>
             <div class="title">
               <div class="line"></div>
@@ -43,10 +43,8 @@
             </div>
             <ul class="supports">
               <li class="support-item" v-for="(item, index) in seller.supports" :key="index">
-                <span class="icon" :class="classMap[item.type]">
-                </span>
-                <span class="text">{{item.description}}
-                </span>
+                <span class="icon" :class="classMap[item.type]"></span>
+                <span class="text">{{item.description}}</span>
               </li>
             </ul>
             <div class="title">
@@ -144,7 +142,6 @@ export default {
           margin-right 4px
           background-size 12px 12px
           background-repeat no-repeat
-
           &.decrease
             bg-image('decrease_1')
           &.discount
@@ -158,7 +155,6 @@ export default {
         .text
           line-height 12px
           font-size 10px
-
     .support-count
       position absolute
       right 12px
@@ -167,7 +163,7 @@ export default {
       line-height 24px
       padding 0 8px
       font-size 10px
-      background rgba(0, 0, 0, 0.2)
+      background rgba(0, 0, 0, .2)
       border-radius 14px
       text-align center
       .count
@@ -200,6 +196,7 @@ export default {
       bg-image('bulletin')
       background-size 22px 12px
       background-repeat no-repeat
+      vertical-align middle
     .bulletin-text
       font-size 10px
       margin 0 4px
@@ -216,8 +213,8 @@ export default {
     right 0
     bottom 0
     overflow auto
-    z-index 10
     background rgba(7, 17, 27, 0.8)
+    z-index 999
     backdrop-filter blur(10px)
     &.fade-enter,
     &.fade-leave-to
@@ -242,15 +239,15 @@ export default {
           display flex
           width 80%
           margin 28px auto 24px auto
-          .line
-            border-bottom 1px solid rgba(255, 255, 255, 0.2)
-            flex 1
-            position  relative
-            top -6px
+        .line
+          border-bottom 1px solid rgba(255, 255, 255, 0.2)
+          flex 1
+          position relative
+          top -6px
         .text
-            font-size 14px
-            font-weight 700
-            padding 0 12px
+          font-size 14px
+          font-weight 700
+          padding 0 12px
         .supports
           width 80%
           margin 0 auto
