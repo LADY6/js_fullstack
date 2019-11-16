@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div id="app">
     <h3 class="mb30">vue 组件通信的各种方式</h3>
     <p>导航:
       <router-link to="/d1">1.父子组件通信</router-link>
