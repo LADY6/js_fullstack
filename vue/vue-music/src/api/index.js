@@ -18,7 +18,6 @@ axios.interceptors.response.use((res) => {
   return Promise.reject(error)
 })
 
-
 export function fetchGet(url, param) {
   return new Promise((resolve, reject) => {
     axios.get(url, {
@@ -37,14 +36,21 @@ export function fetchGet(url, param) {
 
 export default {
   // 用户登录
-  Login(params) {
+  Login (params) {
     return fetchGet('/login', params)
   },
+  // banners
   BannerList () {
     return fetchGet('/banner')
   },
   // 歌单
   DiscLists (params) {
-    return fetchGet('/top/playList', params)
+    return fetchGet('/top/playlist', params)
+  },
+  HotSearchKey () {
+    return fetchGet('/search/hot')
+  },
+  MusicSearch (params) {
+    return fetchGet('/search', params)
   }
 }
