@@ -34,6 +34,7 @@ var arr = [-1, -100, 3, 99], k = 2
 //     // 右移一位
 //     for (let i = n - 1; i > 0; i--) {
 //       list[i] = list[i - 1]
+//       // console.log(list)
 //     }
 //     list[0] = t
 //     // console.log(list)
@@ -73,8 +74,11 @@ function RShift (list, k) {
     return list
   }
   reverse(list, 0, n-k-1)
+  console.log(list)
   reverse(list, n-k, n-1)
+  console.log(list)
   reverse(list, 0, n-1)
+  console.log(list)
   return list
 }
 console.log(RShift(arr, k))

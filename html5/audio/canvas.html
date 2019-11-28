@@ -24,14 +24,17 @@
     ctx.fillRect(0, 0, 300, 150)
     ctx.clearRect(20, 20, 100, 50)
     var dis = 0
+    var diss = 0
     function animation () {
       requestAnimationFrame(function () {
         ctx.clearRect(0, 0, 300, 150)
         ctx.fillStyle = `rgba(${dis++}, 0, 0)`
-        ctx.fillText(dis++, 110, 90)
+        ctx.fillText((diss++), 110, 90)
+        console.log(diss)
         ctx.font = "50px Verdana"
         animation()
-        if (dis >=255) {
+        if (diss >=255) {
+          diss = 0
           dis = 0
         }
       })
