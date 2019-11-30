@@ -12,7 +12,7 @@ router.get('/bar', function (ctx, next) {
 })
 
 router.get('/all', async(ctx, next) => {
-  await userServices.getAllusers.then((res) => {
+  await userServices.getAllusers().then((res) => {
     console.log('打印结果:' + JSON.stringify(res))
     ctx.body = res 
   })
