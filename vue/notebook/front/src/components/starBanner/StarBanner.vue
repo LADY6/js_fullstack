@@ -52,7 +52,7 @@ export default {
       }
     },
     starLogin () {
-      this.$router.push({ path: '/StarLogin' })
+      this.$router.push({ path: '/StarLogin' }) // 跳转到StarLogin页面
     }
   }
 }
