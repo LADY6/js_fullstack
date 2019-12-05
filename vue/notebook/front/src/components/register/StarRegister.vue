@@ -24,10 +24,10 @@
 export default {
   data () {
     return {
-      avatar: require("./../../assets/img/raw_1512446162.png"),
-      nickname:"",
-      username: "",
-      userpwd: ""
+      avatar: require('./../../assets/img/raw_1512446162.png'),
+      nickname: '',
+      username: '',
+      userpwd: ''
     }
   },
   methods: {
@@ -43,13 +43,17 @@ export default {
           username: this.username.trim(),
           userpwd: this.userpwd.trim()
         }
-      })
-      .then(res => {
-        
+      }).then(res => {
+        console.log(res)
+        if (res.data.code === '200') {
+          this.$router.push({ path: '/StarLogin' })
+        } else {
+          this.$toast(res.data.mess)
+        }
       })
     },
     login () {
-      this.$router.push({ path: 'StarLogin' })
+      this.$router.push({ path: '/StarLogin' })
     }
   }
 }
